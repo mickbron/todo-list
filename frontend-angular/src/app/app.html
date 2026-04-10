@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>To Do List</h1>
+
+  <div class="form">
+    <input
+      type="text"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Nouvelle tâche"
+      (keyup.enter)="addTask()"
+    />
+    <button (click)="addTask()">Ajouter</button>
+  </div>
+
+  <ul>
+    @for (task of tasks(); track task.id) {
+      <li>
+        <span
+          [class.completed]="task.completed"
+          (click)="toggleTask(task)"
+        >
+          {{ task.title }}
+        </span>
+        <button class="delete-btn" (click)="deleteTask(task.id)">Supprimer</button>
+      </li>
+    }
+  </ul>
+</div>
